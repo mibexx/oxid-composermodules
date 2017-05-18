@@ -4,9 +4,19 @@ Allow to load modules from composer in Oxid eShop.
 
 Installation
 ------------------
-1. Go to the modules directory
-2. Run: composer create-project mibexx/oxid-composermodules
-3. Activate the module in the backend
+1. Download the repository: https://github.com/mibexx/oxid-composermodules/archive/1.0.0.zip
+2. Unzip it to the modules directory of the shop
+3. Add autoloader to the composer.json
+
+```
+"autoload"   : {
+    "psr-4": {
+        "mbx\\": "mbx"
+    }
+}
+```
+4. Activate the module at the backend
+5. Now you can load modules from composer.json by simple require them
 
 Configuration
 -----------------
