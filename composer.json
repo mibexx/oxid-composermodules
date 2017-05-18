@@ -1,0 +1,20 @@
+{
+  "name"             : "mibexx/oxid-composermodules",
+  "description"      : "Allow to load modules in oxid from composer",
+  "minimum-stability": "stable",
+  "license"          : "MIT",
+  "authors"          : [
+    {
+      "name" : "Mike Bertram",
+      "email": "contact@mibexx.de"
+    }
+  ],
+  "require"          : {
+    "php"         : ">=5.6"
+  },
+  "autoload"   : {
+    "psr-4": {
+      "mbx\\": "mbx"
+    }
+  }
+}
