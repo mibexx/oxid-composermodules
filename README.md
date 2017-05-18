@@ -4,7 +4,7 @@ Allow to load modules from composer in Oxid eShop.
 
 Installation
 ------------------
-1. Download the repository: https://github.com/mibexx/oxid-composermodules/archive/1.0.0.zip
+1. Download the repository: https://github.com/mibexx/oxid-composermodules/archive/1.0.2.zip
 2. Unzip it to the modules directory of the shop
 3. Add autoloader to the composer.json
 
