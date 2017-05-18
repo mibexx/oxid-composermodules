@@ -2,6 +2,12 @@ OXID ComposerModules
 =========================
 Allow to load modules from composer in Oxid eShop.
 
+Shop version
+-----------------
+Tested in OXID CE 4.10.4.  
+Should work in every shop version with composer.json in modules directory (since 4.10.x).
+
+
 Installation
 ------------------
 1. Download the repository: https://github.com/mibexx/oxid-composermodules/archive/1.0.3.zip
