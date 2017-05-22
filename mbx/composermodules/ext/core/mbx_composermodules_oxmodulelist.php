@@ -2,30 +2,41 @@
 
 class mbx_composermodules_oxmodulelist extends mbx_composermodules_oxmodulelist_parent
 {
+    /**
+     * @var \mbx\composermodules\reader\modulereader
+     */
+    private $mbxModuleReader;
+
     public function getModulesFromDir($sModulesDir, $sVendorDir = null)
     {
-        $sConfigModulesDir = oxRegistry::getConfig()->getModulesDir();
+        $sConfigModulesDir = $this->getConfig()->getModulesDir();
         $this->_aModules = parent::getModulesFromDir($sModulesDir, $sVendorDir);
-        if ($sConfigModulesDir == $sModulesDir) {
-            $this->_aModules = array_merge($this->_aModules, $this->getComposerModules());
-        }
+        $this->mbxAddComposerModules($sModulesDir, $sConfigModulesDir);
         return $this->_aModules;
     }
 
     /**
-     * @return array
+     * @param $sModulesDir
+     * @param $sConfigModulesDir
      */
-    private function getComposerModules()
+    protected function mbxAddComposerModules($sModulesDir, $sConfigModulesDir)
     {
-        $directories = new mbx\composermodules\crawler\directorylist();
-        $crawler = new mbx\composermodules\crawler\crawler($directories);
-        $crawler->readDirectories();
-        $modules = [];
-        foreach ($directories->getDirectories() as $moduleDir) {
-            $vendorDir = str_replace(getShopBasePath() . 'modules/', '', $moduleDir);
-            $vendorModules = $this->getModulesFromDir($moduleDir, $vendorDir);
-            $modules = array_merge($modules, $vendorModules);
+        if ($sConfigModulesDir == $sModulesDir) {
+            $reader = $this->mbxGetComposerModuleReader();
+            $this->_aModules = array_merge($this->_aModules, $reader->getComposerModules());
         }
-        return $modules;
     }
+
+    /**
+     * @return \mbx\composermodules\reader\modulereader
+     */
+    private function mbxGetComposerModuleReader()
+    {
+        if ($this->mbxModuleReader === null) {
+            $this->mbxModuleReader = new \mbx\composermodules\reader\modulereader($this);
+        }
+        return $this->mbxModuleReader;
+    }
+
+
 }
