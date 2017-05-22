@@ -51,7 +51,7 @@ class modulereader implements ReaderInterface
      */
     private function mbxGetEmptyDirectoryList()
     {
-        $directories = new mbx\composermodules\crawler\directorylist();
+        $directories = new \mbx\composermodules\crawler\directorylist();
         return $directories;
     }
 
@@ -61,7 +61,7 @@ class modulereader implements ReaderInterface
      */
     private function mbxGetDirectoryCrawler($directories)
     {
-        $crawler = new mbx\composermodules\crawler\crawler($directories);
+        $crawler = new \mbx\composermodules\crawler\crawler($directories);
         return $crawler;
     }
 }
