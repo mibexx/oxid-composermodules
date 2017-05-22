@@ -10,7 +10,7 @@ Should work in every shop version with composer.json in modules directory (since
 
 Installation
 ------------------
-1. Download the repository: https://github.com/mibexx/oxid-composermodules/archive/1.1.0.zip
+1. Download the repository: https://github.com/mibexx/oxid-composermodules/archive/1.1.1.zip
 2. Unzip the mbx directory into the modules directory of the shop
 3. Add autoloader to the composer.json
 
