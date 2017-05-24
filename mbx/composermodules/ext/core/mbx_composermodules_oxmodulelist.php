@@ -33,7 +33,7 @@ class mbx_composermodules_oxmodulelist extends mbx_composermodules_oxmodulelist_
     private function mbxGetComposerModuleReader()
     {
         if ($this->mbxModuleReader === null) {
-            $this->mbxModuleReader = new \mbx\composermodules\reader\modulereader($this);
+            $this->mbxModuleReader = new \mbx\composermodules\reader\modulereader($this, getShopBasePath());
         }
         return $this->mbxModuleReader;
     }

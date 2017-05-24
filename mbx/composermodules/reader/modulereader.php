@@ -11,12 +11,18 @@ class modulereader implements ReaderInterface
     private $moduleList;
 
     /**
+     * @var string
+     */
+    private $basePath;
+
+    /**
      * modulereader constructor.
      * @param \oxModuleList $moduleList
      */
-    public function __construct(\oxModuleList $moduleList)
+    public function __construct(\oxModuleList $moduleList, $basePath)
     {
         $this->moduleList = $moduleList;
+        $this->basePath = $basePath;
     }
 
     /**
@@ -39,7 +45,7 @@ class modulereader implements ReaderInterface
     {
         $modules = [];
         foreach ($directories->getDirectories() as $moduleDir) {
-            $vendorDir = str_replace(getShopBasePath() . 'modules/', '', $moduleDir);
+            $vendorDir = str_replace($this->basePath . 'modules/', '', $moduleDir);
             $vendorModules = $this->moduleList->getModulesFromDir($moduleDir, $vendorDir);
             $modules = array_merge($modules, $vendorModules);
         }
@@ -61,7 +67,7 @@ class modulereader implements ReaderInterface
      */
     private function mbxGetDirectoryCrawler($directories)
     {
-        $crawler = new \mbx\composermodules\crawler\crawler($directories);
+        $crawler = new \mbx\composermodules\crawler\crawler($directories, $this->basePath);
         return $crawler;
     }
 }

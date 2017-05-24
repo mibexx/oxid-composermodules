@@ -11,12 +11,18 @@ class crawler
     private $directories;
 
     /**
+     * @var string
+     */
+    private $basePath;
+
+    /**
      * crawler constructor.
      * @param DirectoryListInterface $directories
      */
-    public function __construct(DirectoryListInterface $directories)
+    public function __construct(DirectoryListInterface $directories, $basePath)
     {
         $this->directories = $directories;
+        $this->basePath = $basePath;
     }
 
     /**
@@ -25,12 +31,12 @@ class crawler
     public function readDirectories($dir = "")
     {
         if ($dir === "") {
-            $this->readDirectories(getShopBasePath() . 'modules/vendor');
-        } else {
-            foreach (glob($dir . '/*') as $subdir) {
-                if ($this->scanSubdirectory($dir, $subdir)) {
-                    break;
-                }
+            $dir = $this->getDefaultDirectory();
+        }
+
+        foreach ($this->getSubdirectories($dir) as $subdir) {
+            if ($this->scanSubdirectory($dir, $subdir)) {
+                break;
             }
         }
     }
@@ -53,5 +59,19 @@ class crawler
             }
             return $found;
         }
+    }
+
+    private function getDefaultDirectory()
+    {
+        return $this->basePath . 'modules/vendor';
+    }
+
+    /**
+     * @param $dir
+     * @return array
+     */
+    private function getSubdirectories($dir)
+    {
+        return glob($dir . '/*');
     }
 }
