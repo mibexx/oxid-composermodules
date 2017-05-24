@@ -33,6 +33,6 @@ class CrawlerTest extends \Codeception\Test\Unit
             ->getMock();
 
         $crawler->readDirectories();
-        $this->assertEquals(array(__DIR__ . '/testModules/modules/vendor'), $directory->getDirectories());
+        $this->assertEquals(array(__DIR__ . '/testModules/modules/vendor/mbx'), $directory->getDirectories());
     }
 }
