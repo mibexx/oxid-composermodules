@@ -5,6 +5,12 @@ paths:
     support: tests/_support
     envs: tests/_envs
 actor_suffix: Tester
+coverage:
+    enabled: true
+    include:
+      - crawler/*
+      - reader/*
+      - ext/*
 extensions:
     enabled:
         - Codeception\Extension\RunFailed
